@@ -1,5 +1,8 @@
 package org.cdisandbox.converter;
 
+import java.lang.reflect.ParameterizedType;
+import java.lang.reflect.Type;
+
 import javax.enterprise.context.Dependent;
 import javax.enterprise.inject.Produces;
 import javax.enterprise.inject.spi.InjectionPoint;
@@ -15,7 +18,7 @@ public class ConverterProducer {
     @Dependent
     Object produceConverter(InjectionPoint ip) {
         String toConvert = ip.getAnnotated().getAnnotation(Convert.class).value();
-        Class<?> toType = (Class<?>) ip.getAnnotated().getBaseType();
+        Class<?> toType = unwrapType(ip.getAnnotated().getBaseType());
 
         System.out.println("I have to convert " + toConvert + " to type: " + toType.toString());
         if (toType.equals(Integer.class))
@@ -25,5 +28,12 @@ public class ConverterProducer {
         else
             return null;
 
+    }
+
+    private <T> Class<T> unwrapType(Type type) {
+        if (type instanceof ParameterizedType) {
+            type = ((ParameterizedType) type).getRawType();
+        }
+        return (Class<T>) type;
     }
 }
