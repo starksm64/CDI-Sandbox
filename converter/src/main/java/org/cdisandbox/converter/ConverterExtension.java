@@ -7,6 +7,8 @@ import java.util.Set;
 
 import javax.enterprise.event.Observes;
 import javax.enterprise.inject.spi.BeanAttributes;
+import javax.enterprise.inject.spi.BeanManager;
+import javax.enterprise.inject.spi.BeforeBeanDiscovery;
 import javax.enterprise.inject.spi.Extension;
 import javax.enterprise.inject.spi.InjectionPoint;
 import javax.enterprise.inject.spi.ProcessBeanAttributes;
@@ -26,6 +28,11 @@ import javax.enterprise.inject.spi.ProcessInjectionPoint;
  * @author Antoine Sabot-Durand
  */
 public class ConverterExtension implements Extension {
+
+    public void addConvertProduer(@Observes BeforeBeanDiscovery bbd, BeanManager beanManager) {
+        System.out.printf("MPConfigExtension, added ConfigPropertyProduer\n");
+        bbd.addAnnotatedType(beanManager.createAnnotatedType(ConverterProducer.class));
+    }
 
     public void retrieveTypes(@Observes ProcessInjectionPoint<?, ?> pip) {
         InjectionPoint ip = pip.getInjectionPoint();
