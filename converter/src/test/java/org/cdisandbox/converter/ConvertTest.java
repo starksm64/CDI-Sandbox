@@ -1,6 +1,7 @@
 package org.cdisandbox.converter;
 
 import java.io.FileNotFoundException;
+import java.util.Optional;
 
 import javax.enterprise.inject.spi.Extension;
 import javax.inject.Inject;
@@ -54,4 +55,15 @@ public class ConvertTest {
     @Inject
     @Convert("Me/Hungry")
     StringBuffer converted2;
+
+    @Inject
+    @Convert("3.14159")
+    float myPi;
+
+    @Inject
+    @Convert("123456789")
+    Optional<Long> maxIterations;
+
+    @Inject
+    ConvertUser convertUser;
 }
