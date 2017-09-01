@@ -1,8 +1,9 @@
 package org.cdisandbox.converter;
 
 import java.io.FileNotFoundException;
-import java.util.Optional;
 
+import javax.enterprise.inject.Any;
+import javax.enterprise.inject.Instance;
 import javax.enterprise.inject.spi.Extension;
 import javax.inject.Inject;
 
@@ -48,6 +49,16 @@ public class ConvertTest {
 
     }
 
+    @Test
+    public void shouldBeNonResolvable() {
+        Assert.assertTrue(instances.select(Object.class, Convert.Literal.INSTANCE).isUnsatisfied());
+    }
+
+    @Test
+    public void shouldBeResolvable() {
+        Assert.assertFalse(instances.select(Integer.class, Convert.Literal.INSTANCE).isUnsatisfied());
+    }
+
     @Inject
     @Convert("126")
     Integer converted;
@@ -57,13 +68,6 @@ public class ConvertTest {
     StringBuffer converted2;
 
     @Inject
-    @Convert("3.14159")
-    float myPi;
-
-    @Inject
-    @Convert("123456789")
-    Optional<Long> maxIterations;
-
-    @Inject
-    ConvertUser convertUser;
+    @Any
+    Instance<Object> instances;
 }
