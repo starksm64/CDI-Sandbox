@@ -12,7 +12,10 @@ public class DefaultWebToken implements JsonWebToken {
     private String name;
 
     public DefaultWebToken() {
-        this.name = "custom-principal#" + super.toString();
+        this("custom-principal#");
+    }
+    public DefaultWebToken(String name) {
+        this.name = name;
         currentPrincipal.set(this);
     }
 

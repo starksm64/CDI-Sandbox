@@ -1,5 +1,7 @@
 package org.cdisandbox.principal.extension;
 
+import java.util.logging.Logger;
+
 import javax.annotation.Priority;
 import javax.enterprise.context.Dependent;
 import javax.enterprise.context.RequestScoped;
@@ -22,6 +24,12 @@ public class PrincipalProducer {
     @Produces
     @Dependent
     JsonWebToken currentJWTPrincipalOrNull() {
-        return new DefaultWebToken();
+        Logger log = Logger.getLogger("PrincipalProducer");
+        JsonWebToken token = DefaultWebToken.getJWTPrincpal();
+        if(token == null) {
+            token = new DefaultWebToken("anon");
+        }
+        log.info("token: "+token);
+        return token;
     }
 }
