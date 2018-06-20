@@ -1,0 +1,6 @@
+= Overriding the built-in Principal bean
+
+This example show how to provide an override of the built-in bean for the
+java.security.Principal type.
+
+

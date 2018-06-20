@@ -1,7 +1,7 @@
-package org.cdisandbox.config.extension;
+package org.cdisandbox.principal.extension;
 
-import org.cdisandbox.config.Configuration;
-import org.cdisandbox.config.ConfiguredService;
+import org.cdisandbox.principal.Configuration;
+import org.cdisandbox.principal.ConfiguredService;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.context.spi.CreationalContext;

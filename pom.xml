@@ -14,7 +14,7 @@
     <module>fat-entities</module>
     <module>autoinject</module>
     <module>configured-bean</module>
-    <module>basicse</module>
+    <module>principal-bean</module>
   </modules>
 
   <packaging>pom</packaging>
@@ -264,7 +264,7 @@
           <plugin>
             <artifactId>maven-surefire-plugin</artifactId>
             <configuration>
-              <skip>true</skip>
+              <skip>false</skip>
             </configuration>
           </plugin>
         </plugins>

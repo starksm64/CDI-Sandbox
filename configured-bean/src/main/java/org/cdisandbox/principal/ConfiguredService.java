@@ -1,4 +1,4 @@
-package org.cdisandbox.config;
+package org.cdisandbox.principal;
 
 import javax.enterprise.inject.Vetoed;
 

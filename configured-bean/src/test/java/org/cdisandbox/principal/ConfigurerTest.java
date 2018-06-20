@@ -1,6 +1,6 @@
-package org.cdisandbox.config;
+package org.cdisandbox.principal;
 
-import org.cdisandbox.config.extension.ConfigurationExtension;
+import org.cdisandbox.principal.extension.ConfigurationExtension;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.Archive;
@@ -41,7 +41,7 @@ public class ConfigurerTest {
 
         WebArchive ret = ShrinkWrap
                 .create(WebArchive.class, "test.war")
-                .addPackages(true, "org.cdisandbox.config")
+                .addPackages(true, "org.cdisandbox.principal")
                 .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml")
                 .addAsServiceProvider(Extension.class, ConfigurationExtension.class);
 
